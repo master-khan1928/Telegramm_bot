@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Фоновый градиент -->
+    <div class="bg-gradient"></div>
+
+    <!-- Баннер / Header -->
+    <header class="glass-header">
+        <div class="header-content">
+            <div class="logo-circle">
+                <span>✦</span>
+            </div>
+            <div class="header-text">
+                <h1>Mini App</h1>
+                <p>Твой помощник</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Поисковик -->
+    <div class="search-wrapper">
+        <div class="search-glass">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Поиск">
+            <button class="clear-btn" id="clearBtn">×</button>
+        </div>
+    </div>
+
+    <!-- Боковая панель + Контент -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <nav class="sidebar-glass">
+            <button class="nav-item active" data-tab="home">
+                <div class="nav-icon">🏠</div>
+                <span>Главная</span>
+            </button>
+            <button class="nav-item" data-tab="catalog">
+                <div class="nav-icon">📦</div>
+                <span>Каталог</span>
+            </button>
+            <button class="nav-item" data-tab="favorites">
+                <div class="nav-icon">❤️</div>
+                <span>Избранное</span>
+            </button>
+            <button class="nav-item" data-tab="profile">
+                <div class="nav-icon">👤</div>
+                <span>Профиль</span>
+            </button>
+        </nav>
+
+        <!-- Контент вкладок -->
+        <main class="content-area">
+            <!-- Главная -->
+            <div id="tab-home" class="tab-content active">
+                <div class="welcome-card glass-card">
+                    <div class="card-glow"></div>
+                    <h2>Добро пожаловать!</h2>
+                    <p>Исследуй каталог и находи лучшее</p>
+                </div>
+                
+                <div class="section-title">Популярное</div>
+                <div class="cards-grid">
+                    <div class="glass-card mini">
+                        <div class="card-icon">🚀</div>
+                        <span>Новинки</span>
+                    </div>
+                    <div class="glass-card mini">
+                        <div class="card-icon">⭐</div>
+                        <span>Топ</span>
+                    </div>
+                    <div class="glass-card mini">
+                        <div class="card-icon">🔥</div>
+                        <span>Хит</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Каталог -->
+            <div id="tab-catalog" class="tab-content">
+                <div class="section-title">Результаты поиска</div>
+                <div class="items-list" id="catalogItems">
+                    <div class="glass-card item">
+                        <div class="item-image">🎨</div>
+                        <div class="item-info">
+                            <h3>Дизайн-курс</h3>
+                            <p>Основы UI/UX</p>
+                        </div>
+                        <div class="item-price">$29</div>
+                    </div>
+                    <div class="glass-card item">
+                        <div class="item-image">💻</div>
+                        <div class="item-info">
+                            <h3>React курс</h3>
+                            <p>С нуля до про</p>
+                        </div>
+                        <div class="item-price">$49</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Избранное -->
+            <div id="tab-favorites" class="tab-content">
+                <div class="empty-state">
+                    <div class="empty-icon">❤️</div>
+                    <h3>Пока пусто</h3>
+                    <p>Добавляй товары в избранное</p>
+                </div>
+            </div>
+
+            <!-- Профиль -->
+            <div id="tab-profile" class="tab-content">
+                <div class="profile-card glass-card">
+                    <div class="avatar">👤</div>
+                    <h3>Пользователь</h3>
+                    <p>@username</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Мобильная навигация (нижняя) -->
+    <nav class="mobile-nav">
+        <button class="mob-item active" data-tab="home">
+            <span>🏠</span>
+            <small>Главная</small>
+        </button>
+        <button class="mob-item" data-tab="catalog">
+            <span>📦</span>
+            <small>Каталог</small>
+        </button>
+        <button class="mob-item" data-tab="favorites">
+            <span>❤️</span>
+            <small>Избранное</small>
+        </button>
+        <button class="mob-item" data-tab="profile">
+            <span>👤</span>
+            <small>Профиль</small>
+        </button>
+    </nav>
+
+    <script src="app.js"></script>
+    <script src="router.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>
