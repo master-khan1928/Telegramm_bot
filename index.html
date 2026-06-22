@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Marketing Hub</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="bg-gradient"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Menu overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-panel glass-panel">
+            <button class="menu-close" id="menuClose">✕</button>
+            <div class="menu-header">
+                <div class="menu-logo">📈</div>
+                <h2>Marketing Hub</h2>
+                <p>Расти в digital</p>
+            </div>
+            <div class="menu-content">
+                <div class="menu-section">
+                    <h3>🎯 О платформе</h3>
+                    <p>Marketing Hub — это экосистема для маркетологов, предпринимателей и всех, кто хочет масштабировать бизнес через digital-каналы.</p>
+                </div>
+                
+                <div class="menu-section">
+                    <h3>📚 Что внутри</h3>
+                    <div class="menu-features">
+                        <div class="m-feature">
+                            <span class="mf-icon">🎓</span>
+                            <div>
+                                <strong>50+ курсов</strong>
+                                <span>SMM, SEO, таргет, аналитика</span>
+                            </div>
+                        </div>
+                        <div class="m-feature">
+                            <span class="mf-icon">🛠️</span>
+                            <div>
+                                <strong>Инструменты</strong>
+                                <span>Готовые шаблоны и чек-листы</span>
+                            </div>
+                        </div>
+                        <div class="m-feature">
+                            <span class="mf-icon">🤝</span>
+                            <div>
+                                <strong>Сообщество</strong>
+                                <span>Чат с экспертами</span>
+                            </div>
+                        </div>
+                        <div class="m-feature">
+                            <span class="mf-icon">📊</span>
+                            <div>
+                                <strong>Аналитика</strong>
+                                <span>KPI и отчёты</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <h3>📈 Наши цифры</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item glass-mini">
+                            <span class="stat-num">50K+</span>
+                            <span class="stat-label">Студентов</span>
+                        </div>
+                        <div class="stat-item glass-mini">
+                            <span class="stat-num">200+</span>
+                            <span class="stat-label">Курсов</span>
+                        </div>
+                        <div class="stat-item glass-mini">
+                            <span class="stat-num">98%</span>
+                            <span class="stat-label">Успешных</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <h3>💡 Почему мы</h3>
+                    <p>Каждый курс — это не теория, а готовые инструменты для роста вашего бизнеса от практикующих экспертов.</p>
+                </div>
+                
+                <div class="menu-footer">
+                    <p>© 2026 Marketing Hub</p>
+                    <p>support@marketinghub.app</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart overlay -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-panel glass-panel">
+            <div class="cart-header">
+                <h2>🛒 Корзина</h2>
+                <button class="cart-close" id="cartClose">✕</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <div class="cart-empty">Корзина пуста</div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Итого:</span>
+                    <span id="cartTotal">$0</span>
+                </div>
+                <button class="checkout-btn glass-btn primary" id="checkoutBtn">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <div class="header-content">
+            <button class="menu-btn" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-center">
+                <div class="logo-circle">
+                    <span>📈</span>
+                </div>
+                <div class="header-text">
+                    <h1>Marketing Hub</h1>
+                    <p>Расти в digital</p>
+                </div>
+            </div>
+            <button class="cart-btn glass-icon-btn" id="cartBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M6 6h15l-1.5 9h-12L6 6z"/>
+                    <circle cx="9" cy="20" r="1.5"/>
+                    <circle cx="18" cy="20" r="1.5"/>
+                    <path d="M6 6L5 3H2"/>
+                </svg>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Search -->
+    <div class="search-wrapper">
+        <div class="search-glass">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Поиск курсов, инструментов...">
+            <button class="clear-btn" id="clearBtn">✕</button>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <nav class="sidebar-glass">
+            <div class="sidebar-header">
+                <span>Навигация</span>
+            </div>
+            <button class="nav-item active" data-tab="home">
+                <div class="nav-icon-bg">🏠</div>
+                <span>Главная</span>
+            </button>
+            <button class="nav-item" data-tab="catalog">
+                <div class="nav-icon-bg">📦</div>
+                <span>Каталог</span>
+            </button>
+            <button class="nav-item" data-tab="deals">
+                <div class="nav-icon-bg">🔥</div>
+                <span>Акции</span>
+            </button>
+            <button class="nav-item" data-tab="orders">
+                <div class="nav-icon-bg">📋</div>
+                <span>Заказы</span>
+            </button>
+            <button class="nav-item" data-tab="favorites">
+                <div class="nav-icon-bg">❤️</div>
+                <span>Избранное</span>
+            </button>
+            <button class="nav-item" data-tab="profile">
+                <div class="nav-icon-bg">👤</div>
+                <span>Профиль</span>
+            </button>
+            <button class="nav-item" data-tab="settings">
+                <div class="nav-icon-bg">⚙️</div>
+                <span>Настройки</span>
+            </button>
+        </nav>
+
+        <!-- Content -->
+        <main class="content-area">
+            <!-- Home -->
+            <div id="tab-home" class="tab-content active">
+                <div class="welcome-card glass-card hero">
+                    <div class="hero-glow"></div>
+                    <div class="hero-badge">✨ Добро пожаловать</div>
+                    <h2>Осваивай маркетинг<br>с лучшими экспертами</h2>
+                    <p>50+ курсов, инструменты и сообщество для роста вашего бизнеса</p>
+                    <button class="hero-btn glass-btn primary" onclick="router.navigateTo('catalog')">
+                        Начать обучение →
+                    </button>
+                </div>
+                
+                <div class="section-header">
+                    <h3 class="section-title">Быстрый доступ</h3>
+                </div>
+                <div class="cards-grid">
+                    <div class="glass-card mini clickable" data-action="new">
+                        <div class="mini-glow blue"></div>
+                        <div class="card-icon-bg">🚀</div>
+                        <span>Новинки</span>
+                        <small>5 новых курсов</small>
+                    </div>
+                    <div class="glass-card mini clickable" data-action="top">
+                        <div class="mini-glow purple"></div>
+                        <div class="card-icon-bg">⭐</div>
+                        <span>Топ</span>
+                        <small>Популярное</small>
+                    </div>
+                    <div class="glass-card mini clickable" data-action="hit">
+                        <div class="mini-glow orange"></div>
+                        <div class="card-icon-bg">🔥</div>
+                        <span>Хит</span>
+                        <small>Бестселлер</small>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h3 class="section-title">Категории</h3>
+                    <span class="section-link" onclick="router.navigateTo('catalog')">Все →</span>
+                </div>
+                <div class="category-grid">
+                    <div class="category-card glass-card" data-cat="smm">
+                        <div class="cat-glow pink"></div>
+                        <div class="cat-icon-bg">📱</div>
+                        <span>SMM</span>
+                        <small>12 курсов</small>
+                    </div>
+                    <div class="category-card glass-card" data-cat="seo">
+                        <div class="cat-glow green"></div>
+                        <div class="cat-icon-bg">🔍</div>
+                        <span>SEO</span>
+                        <small>8 курсов</small>
+                    </div>
+                    <div class="category-card glass-card" data-cat="content">
+                        <div class="cat-glow blue"></div>
+                        <div class="cat-icon-bg">✍️</div>
+                        <span>Контент</span>
+                        <small>10 курсов</small>
+                    </div>
+                    <div class="category-card glass-card" data-cat="ads">
+                        <div class="cat-glow red"></div>
+                        <div class="cat-icon-bg">🎯</div>
+                        <span>Реклама</span>
+                        <small>15 курсов</small>
+                    </div>
+                    <div class="category-card glass-card" data-cat="analytics">
+                        <div class="cat-glow purple"></div>
+                        <div class="cat-icon-bg">📊</div>
+                        <span>Аналитика</span>
+                        <small>7 курсов</small>
+                    </div>
+                    <div class="category-card glass-card" data-cat="email">
+                        <div class="cat-glow yellow"></div>
+                        <div class="cat-icon-bg">📧</div>
+                        <span>Email</span>
+                        <small>6 курсов</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catalog -->
+            <div id="tab-catalog" class="tab-content">
+                <div class="section-header">
+                    <h3 class="section-title">Все курсы</h3>
+                    <span class="section-count" id="catalogCount">9 курсов</span>
+                </div>
+                <div class="items-list" id="catalogItems"></div>
+            </div>
+
+            <!-- Deals -->
+            <div id="tab-deals" class="tab-content">
+                <div class="section-header">
+                    <h3 class="section-title">🔥 Горячие акции</h3>
+                </div>
+                <div class="deals-banner glass-card">
+                    <div class="deal-glow"></div>
+                    <div class="deal-badge">-50%</div>
+                    <h3>Полный пакет<br>Digital Marketing</h3>
+                    <p>Все курсы + инструменты + сертификат</p>
+                    <div class="deal-price">
+                        <span class="old">$199</span>
+                        <span class="new">$99</span>
+                    </div>
+                    <button class="add-to-cart glass-btn primary" data-id="deal1" data-name="Полный пакет Digital Marketing" data-price="99">
+                        В корзину
+                    </button>
+                </div>
+                <div class="items-list" id="dealsItems"></div>
+            </div>
+
+            <!-- Orders -->
+            <div id="tab-orders" class="tab-content">
+                <div class="section-header">
+                    <h3 class="section-title">📋 Мои заказы</h3>
+                </div>
+                <div class="orders-list" id="ordersList">
+                    <div class="empty-state glass-card">
+                        <div class="empty-icon">📋</div>
+                        <h3>Пока нет заказов</h3>
+                        <p>Сделай первый шаг к росту!</p>
+                        <button class="glass-btn" onclick="router.navigateTo('catalog')">В каталог</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorites -->
+            <div id="tab-favorites" class="tab-content">
+                <div class="section-header">
+                    <h3 class="section-title">❤️ Избранное</h3>
+                </div>
+                <div class="items-list" id="favoritesItems">
+                    <div class="empty-state glass-card">
+                        <div class="empty-icon">❤️</div>
+                        <h3>Пока пусто</h3>
+                        <p>Добавляй курсы в избранное</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile -->
+            <div id="tab-profile" class="tab-content">
+                <div class="profile-section" id="profileLogin">
+                    <div class="glass-card login-card">
+                        <div class="login-glow"></div>
+                        <div class="login-icon">👤</div>
+                        <h3>Вход в профиль</h3>
+                        <p>Введите данные для входа или создайте новый аккаунт</p>
+                        <div class="input-group">
+                            <input type="text" id="loginUsername" placeholder="Никнейм">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="loginPassword" placeholder="Пароль">
+                        </div>
+                        <button class="glass-btn primary" id="loginBtn">Войти</button>
+                        <button class="glass-btn secondary" id="registerBtn">Создать аккаунт</button>
+                    </div>
+                </div>
+
+                <div class="profile-section hidden" id="profileView">
+                    <div class="profile-card glass-card">
+                        <div class="profile-glow"></div>
+                        <div class="avatar-wrapper">
+                            <div class="avatar" id="profileAvatar">👤</div>
+                            <button class="avatar-edit glass-icon-btn" id="avatarEdit">📷</button>
+                            <input type="file" id="avatarInput" accept="image/*" hidden>
+                        </div>
+                        <h3 id="profileName">Пользователь</h3>
+                        <p id="profileUsername">@username</p>
+                        <div class="profile-stats">
+                            <div class="p-stat glass-mini">
+                                <span id="statCourses">0</span>
+                                <small>Курсов</small>
+                            </div>
+                            <div class="p-stat glass-mini">
+                                <span id="statOrders">0</span>
+                                <small>Заказов</small>
+                            </div>
+                            <div class="p-stat glass-mini">
+                                <span id="statFav">0</span>
+                                <small>Избранных</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card edit-card">
+                        <h4>✏️ Редактировать профиль</h4>
+                        <div class="edit-field">
+                            <label>Никнейм</label>
+                            <input type="text" id="editNickname" placeholder="Новый никнейм">
+                        </div>
+                        <div class="edit-field">
+                            <label>Имя</label>
+                            <input type="text" id="editName" placeholder="Ваше имя">
+                        </div>
+                        <div class="edit-field">
+                            <label>О себе</label>
+                            <textarea id="editBio" placeholder="Расскажите о себе..."></textarea>
+                        </div>
+                        <button class="glass-btn primary" id="saveProfileBtn">💾 Сохранить</button>
+                        <button class="glass-btn danger" id="logoutBtn">🚪 Выйти</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div id="tab-settings" class="tab-content">
+                <div class="section-header">
+                    <h3 class="section-title">⚙️ Настройки</h3>
+                </div>
+                <div class="settings-list">
+                    <div class="setting-item glass-card">
+                        <div class="setting-info">
+                            <div class="setting-icon-bg">🔔</div>
+                            <div>
+                                <h4>Уведомления</h4>
+                                <p>Push и email уведомления</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item glass-card">
+                        <div class="setting-info">
+                            <div class="setting-icon-bg">🌙</div>
+                            <div>
+                                <h4>Тёмная тема</h4>
+                                <p>Тёмный режим интерфейса</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked disabled>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item glass-card">
+                        <div class="setting-info">
+                            <div class="setting-icon-bg">🌐</div>
+                            <div>
+                                <h4>Язык</h4>
+                                <p>Русский</p>
+                            </div>
+                        </div>
+                        <span class="setting-arrow">›</span>
+                    </div>
+                    <div class="setting-item glass-card">
+                        <div class="setting-info">
+                            <div class="setting-icon-bg">🔒</div>
+                            <div>
+                                <h4>Безопасность</h4>
+                                <p>Смена пароля, 2FA</p>
+                            </div>
+                        </div>
+                        <span class="setting-arrow">›</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav glass-panel">
+        <button class="mob-item active" data-tab="home">
+            <div class="mob-icon">🏠</div>
+            <small>Главная</small>
+        </button>
+        <button class="mob-item" data-tab="catalog">
+            <div class="mob-icon">📦</div>
+            <small>Каталог</small>
+        </button>
+        <button class="mob-item" data-tab="deals">
+            <div class="mob-icon">🔥</div>
+            <small>Акции</small>
+        </button>
+        <button class="mob-item" data-tab="cart">
+            <div class="mob-icon">🛒</div>
+            <small>Корзина</small>
+        </button>
+        <button class="mob-item" data-tab="profile">
+            <div class="mob-icon">👤</div>
+            <small>Профиль</small>
+        </button>
+    </nav>
+
+    <script src="app.js"></script>
+    <script src="router.js"></script>
+    <script src="search.js"></script>
+    <script src="catalog.js"></script>
+    <script src="cart.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>
