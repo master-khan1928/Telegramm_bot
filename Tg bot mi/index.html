@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Баннер -->
+    <header class="banner">
+        <div class="banner-content">
+            <img src="logo.png" alt="Logo" class="banner-logo">
+            <h1>Название Приложения</h1>
+        </div>
+    </header>
+
+    <!-- Поисковик -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="🔍 Поиск...">
+        <button id="searchBtn">Найти</button>
+    </div>
+
+    <div class="main-layout">
+        <!-- Боковая панель -->
+        <aside class="sidebar" id="sidebar">
+            <nav>
+                <button class="nav-item active" data-tab="home">
+                    🏠 Главная
+                </button>
+                <button class="nav-item" data-tab="catalog">
+                    📦 Каталог
+                </button>
+                <button class="nav-item" data-tab="favorites">
+                    ❤️ Избранное
+                </button>
+                <button class="nav-item" data-tab="profile">
+                    👤 Профиль
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Контент вкладок -->
+        <main class="content">
+            <div id="tab-home" class="tab-content active">
+                <h2>Главная</h2>
+                <p>Добро пожаловать!</p>
+            </div>
+            <div id="tab-catalog" class="tab-content">
+                <h2>Каталог</h2>
+                <div class="items-grid" id="catalogItems"></div>
+            </div>
+            <div id="tab-favorites" class="tab-content">
+                <h2>Избранное</h2>
+            </div>
+            <div id="tab-profile" class="tab-content">
+                <h2>Профиль</h2>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>
